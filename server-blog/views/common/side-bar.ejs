@@ -1,0 +1,34 @@
+<div class="right-main">
+	
+	<div class="tag-box content-box">
+		<ul class="tag-list">
+			<%count=0%>
+			<%tags.forEach((item)=>{%>
+				<li class="tag-list-item" tag-id="<%-item._id%>" style="color:<%-item.color%>;background: <%-item.bgcolor%>"><%-item.tagName%></li>
+				<%count++;%>
+				<%if(count%4==0){%>
+					<br/>
+				<%}%>
+			<%})%>
+		</ul>			
+	</div>
+	
+</div>
+
+<style>
+.right-main{
+	width:200px;
+
+}
+	.tag-list{
+		
+	}
+	.tag-list .tag-list-item{
+		font-size:14px;
+		padding:10px;
+		margin:5px;
+		border-radius: 7px;
+		float:left;
+
+	}
+</style>

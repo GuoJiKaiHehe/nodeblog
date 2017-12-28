@@ -1,0 +1,19 @@
+<template>
+  <div id="app">
+    <transition name="fade" mode="out-in">
+      <router-view/>
+    </transition>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'app'
+}
+</script>
+
+<style lang="less">
+@import url("./assets/less/main");
+@import url('./assets/less/reset');
+
+</style>

@@ -1,0 +1,37 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./app"
+  },
+  "dependencies": {
+    "async": "^2.6.0",
+    "async-validator": "^1.8.2",
+    "axios": "^0.17.1",
+    "body-parser": "~1.17.1",
+    "co": "^4.6.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "ejs": "~2.5.6",
+    "express": "~4.15.2",
+    "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
+    "markdown-it": "^8.4.0",
+    "moment": "^2.20.1",
+    "mongoose": "^4.13.7",
+    "mongoose-id-autoinc": "^2013.7.14-4",
+    "morgan": "~1.8.1",
+    "nodemailer": "^4.4.1",
+    "password-hash": "^1.2.2",
+    "serve-favicon": "~2.4.2",
+    "socket.io": "^2.0.4",
+    "socket.io-cookie": "^0.0.1",
+    "timeago.js": "^3.0.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.4.0",
+    "nodemon": "^1.14.3"
+  }
+}

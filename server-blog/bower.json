@@ -1,0 +1,23 @@
+{
+  "name": "server",
+  "description": "",
+  "main": "",
+  "authors": [
+    "guojikai <970228812@qq.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "socket.io": "^2.0.4",
+    "socket-io-client": "^1.4.5"
+  }
+}

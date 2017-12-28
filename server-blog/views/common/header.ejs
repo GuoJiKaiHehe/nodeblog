@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+   
+  </head>
+  <body>
+
+<link rel="stylesheet" href="/stylesheets/main.css">
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<header class="header">
+
+	<nav style="width:100%">
+		<ul  class="nav-list">
+			<li class="nav-list-item active"><a href="/">全部</a></li>
+			<% cates.forEach((item)=>{ %>
+				<% if(req.params.id !=String(item._id)){%>
+				<li class="nav-list-item " cate-id="<%-item._id%>"><a href="/cate/<%-item._id%>"><%- item.cateName%></a></li>
+				<%}else{%>
+					
+					<li class="nav-list-item active" cate-id="<%-item._id%>"><a href="/cate/<%-item._id%>"><%- item.cateName%></a></li>
+				<%}%>
+			
+			<%})%>
+		</ul>
+	</nav>
+</header>
+
+<style>
+	.header{
+		display: flex;
+		height: 40px;
+		background: #48525e;
+	}
+	.nav-list {
+		display: flex;
+		line-height: 40px;
+	}
+	.nav-list li{
+		flex:1;
+		color:#fff;
+		text-align:center;
+	}
+	.nav-list li.active a{
+		color:#f00;
+	}
+	.nav-list li a{
+		color:#fff;
+		text-decoration: none;
+	}
+</style>

@@ -1,0 +1,46 @@
+
+	<%- include("../common/header.ejs")%>
+	<body>
+    <div class="main">
+    <div class="left-main">
+        <div class="detail-blog-content">
+            <h2 class="title"><%-blog.title%></h2>
+                <div class="introl">
+                  <p>发表于：<%-timeagoInstance.format(blog.created_at,"zh_CN")%></p>
+                  <p>作者：<%-blog.user_id%></p>
+                  <p>浏览次数：<%-blog.views%></p>
+                </div>
+
+                <div class="content">
+                  <%-blog.content%>
+                </div>          
+        </div>
+    </div>
+    <%- include('../common/side-bar.ejs')%>
+  </div>
+
+  </body>
+
+	<%- include("../common/footer.ejs")%>
+
+
+<style>
+  .title{
+    text-align: center;
+    margin-top:20px;
+    margin-bottom: 20px;
+  }
+  .detail-blog-content{
+    padding:20px;
+  }
+  .detail-blog-content .introl{
+    display: flex;
+    justify-content: space-between;
+    margin-top:10px;
+    margin-bottom: 10px;
+  }
+  .detail-blog-content .introl p{
+
+  }
+
+</style>

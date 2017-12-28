@@ -1,0 +1,142 @@
+<footer class="footer">
+	copyright -->guojikai
+</footer>
+
+
+<style>
+	.footer{
+		text-align: center;
+		height: 80px;
+		border-top:1px solid #ccc;
+		line-height: 80px;
+		margin-top:20px;
+	}
+</style>
+
+<script src="/lib/socket-io-client/socket.io.js"></script>
+<script>
+	$(function(){
+		var socket = io('http://localhost:3333');
+		// socket.use
+		socket.on("tag:add",function(tag){
+			// console.log(tag);
+			var tags_dom=$(".tag-box").find(".tag-list-item")
+			if(tags_dom.length>0){
+				for(var i=0;i<tags_dom.length;i++){
+					if(tags_dom.eq(i).text()==tag.tagName){
+						return;
+					}
+				}
+				var tag_li=tags_dom.eq(0).clone();
+				if(tag_li){
+					tag_li.css({
+
+					})
+					$(".tag-list").append(tag_li.text(tag.tagName));
+				}else{
+					// var li_tpl='<li class="tag-list-item" >呵呵哒1</li>';
+					var el_li=$('<li>')
+					el_li.addClass("tag-list-item").css({
+						background:tag.bgcolor,
+						color:tag.color
+					}).attr("tag-id",tag._id);
+					$(".tag-list").append(el_li);
+				}
+			}
+		})
+		socket.on("tag:del",function(tag){
+			console.log('tag:del');
+			var tags_dom=$(".tag-box").find(".tag-list-item")
+			if(tags_dom.length>0){
+					for(var i=0;i<tags_dom.length;i++){
+						if(tags_dom.eq(i).attr("tag-id")==tag._id){
+							tags_dom.eq(i).remove();
+							break;
+						}
+					}				
+			}
+		});
+		socket.on("blog:add",function(blog){
+			console.log(blog);
+			if(blog){
+						var blogList=$(".blog-list");
+						var blogListItems=blogList.find(".blog-list-item");
+						// blogListItems
+						var isAdded=false;
+						for(var i=0;i<blogListItems.length;i++){
+							var blog_id=blogListItems.eq(i).attr("blog-id")
+							if(blog_id==blog._id){
+								isAdded=true;
+								break;
+							}
+						}
+						var blog_item_tpl=`
+							<li class="blog-list-item">
+										<a href="/blog/#_id#">
+											<div class="avatar">
+												<img src="" alt="">
+											</div>
+											<div class="title">
+												#title#
+											</div>
+											<div class="time">
+												#created_at#
+											</div>						
+										</a>
+									</li>
+						`;
+
+						if(!isAdded){
+							blog_item_tpl=blog_item_tpl.replace(/#_id#/gi,blog._id)
+													   .replace(/#created_at#/ig,blog.created_at)
+													   .replace(/#title#/ig,blog.title);
+
+							blogList.prepend(blog_item_tpl);
+						}				
+			}
+			
+
+		})
+		socket.on("blog:del",function(blog){
+
+		})
+
+		socket.on("cate:add",function(cate){
+			console.log(cate);
+			var navList=$(".header .nav-list");
+			var navListItems=$(".header .nav-list .nav-list-item");
+			var isAdded=false;
+			for(var i=0;i<navListItems.length;i++){
+				var cate_id=navListItems.eq(i).attr("cate-id");
+				if(cate_id==cate._id){
+					isAdded=true;
+					break;
+				}
+			}
+			if(!isAdded){
+				var li_tpl='<li class="nav-list-item" cate-id="#cate_id#"><a href="/cate/#cate_id#">#text#</a></li>';
+				var li=li_tpl.replace(/#cate_id#/ig,cate._id).replace(/#text#/ig,cate.cateName);
+				
+				navList.append(li);
+			}
+		})
+
+		socket.on("cate:del",function(cate){
+			console.log(cate);
+			var navList=$(".header .nav-list");
+			var navListItems=$(".header .nav-list .nav-list-item");
+
+			for(var i=0;i<navListItems.length;i++){
+				var cate_id=navListItems.eq(i).attr("cate-id");
+				if(cate_id==cate._id){
+					navListItems.eq(i).remove();
+				}
+			}
+			
+		})		
+
+
+	})
+</script>
+  </body>
+</html>
